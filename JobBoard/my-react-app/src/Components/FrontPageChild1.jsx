@@ -3,7 +3,7 @@ export default function FrontPage1() {
       <div className="container mx-auto">
         <div className="mb-2 mx-2">
           <p className="font-bold text-3xl text-center italic p-2 text-blue-400">
-            Welcome to JOBIZZ !
+            Welcome to JOBIZZ
           </p>
           <p className="font-bold text-2xl text-center italic m-3 p-2 text-blue-400">
             Opportunities don't happen, let's create them.
