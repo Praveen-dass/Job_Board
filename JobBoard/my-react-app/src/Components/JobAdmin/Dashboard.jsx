@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import SideNavInDashboard from "./SideNavInDashboard";
 import Navbar from "./Navbar";
 import { Box } from "@mui/material";
 // import Jobs from "./JobsPosted";
 import Cart from "./Cart";
+import { jobcontext } from "../../App";
 export default function DashBoard() {
+  const {companyname} = useContext(jobcontext);
   return (
     <>
       <Navbar />
@@ -20,7 +22,7 @@ export default function DashBoard() {
             margin: "10px 0px 0px 10px",
           }}
         >
-          {/* <Jobs /> */}
+          <p>{companyname}</p>
           <Cart></Cart>
         </Box>
       </Box>

@@ -22,9 +22,10 @@ export const jobcontext = createContext();
 function App() {
   const [jobName, setjobName] = useState("");
   const [location, setLocation] = useState("");
+  const [companyname, setCompanyNameInContext] = useState("");
 
   return (
-    <jobcontext.Provider value={{ jobName, setjobName, location, setLocation }}>
+    <jobcontext.Provider value={{ jobName, setjobName, location, setLocation ,companyname, setCompanyNameInContext }}>
       <Routes>
         <Route path="/" element={<FrontPage />} />
         <Route path="/post/home" element={<Home />} />

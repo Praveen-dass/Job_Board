@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Paper,
   Avatar,
@@ -13,6 +13,7 @@ import {
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import { jobcontext } from "../../App";
 
 const defaultTheme = createTheme();
 
@@ -33,6 +34,7 @@ export default function AdminSignup() {
   const [conErr, setConErr] = useState(false);
 
   const [passwordError, setPasswordError] = useState("");
+  const {setCompanyNameInContext} = useContext(jobcontext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -70,6 +72,7 @@ export default function AdminSignup() {
           username: username,
           password: password,
         });
+        setCompanyNameInContext(companyName);
 
         navigate("/post/home");
       }
