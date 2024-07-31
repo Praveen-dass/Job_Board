@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   TextField,
   Button,
@@ -12,16 +12,22 @@ import LockIcon from "@mui/icons-material/Lock";
 import { LockOutlined } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Admincontext } from "../../App";
 
 const AdminLogin = () => {
   const [username, setusername] = useState("");
   const [password, setPassword] = useState("");
+  const [uerror, setuerror] = useState(false);
+  const [perror, setperror] = useState(false);
   const [loginerror,setLoginError] = useState(null);
+  const {setUserNameContext} = useContext(Admincontext);
   const navigator = useNavigate();
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if(username == "") setuerror(true);
+    if(password == "") setperror(true);
     
 
     const user = await axios.get(
@@ -34,6 +40,7 @@ const AdminLogin = () => {
       setLoginError("Password is incorrect");
     }
     else{
+      setUserNameContext(username);
       navigator("/post/home");
     }
   };
@@ -72,8 +79,9 @@ const AdminLogin = () => {
               name="username"
               autoComplete="user Name"
               autoFocus
+              error={uerror}
               value={username}
-              onChange={(e) => setusername(e.target.value)}
+              onChange={(e) => {setusername(e.target.value); username == "" ? setuerror(true) : setuerror(false);}}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -92,8 +100,9 @@ const AdminLogin = () => {
               type="password"
               id="password"
               autoComplete="current-password"
+              error={perror}
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {setPassword(e.target.value); password == "" ? setperror(true) : setperror(false);}}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">

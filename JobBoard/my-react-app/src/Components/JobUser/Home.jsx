@@ -10,14 +10,14 @@ import {
 } from "lucide-react";
 import axios from "axios";
 import "../../App.css";
-import { jobcontext } from "../../App";
+import { Admincontext } from "../../App";
 import JobSearchForm from "./Searchbar";
 import Footer from "../Footer";
 import UserNavBar from "./userNavbar";
 import { useNavigate } from "react-router-dom";
 
 export default function CompanyDetail() {
-  const { jobName, location } = useContext(jobcontext);
+  const { jobName, location } = useContext(Admincontext);
   const [jobs, setJobs] = useState([]);
   const [dupjobs, setdupJobs] = useState([]);
   const [selectedJob, setSelectedJob] = useState(null);

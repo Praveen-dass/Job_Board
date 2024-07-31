@@ -13,7 +13,7 @@ import {
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-import { jobcontext } from "../../App";
+import { Admincontext } from "../../App";
 
 const defaultTheme = createTheme();
 
@@ -25,6 +25,7 @@ export default function AdminSignup() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const {setUserNameContext,setCompanyNameInContext} = useContext(Admincontext);
 
   const [fnErr, setFnErr] = useState(false);
   const [lnErr, setLnErr] = useState(false);
@@ -34,7 +35,6 @@ export default function AdminSignup() {
   const [conErr, setConErr] = useState(false);
 
   const [passwordError, setPasswordError] = useState("");
-  const {setCompanyNameInContext} = useContext(jobcontext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,6 +49,7 @@ export default function AdminSignup() {
       const user = await axios.get(
         `http://localhost:8080/admin/get/${username}`
       );
+      console.log(user);
 
       if (user.data != null) {
         setPasswordError("Username already exists");
@@ -72,6 +73,7 @@ export default function AdminSignup() {
           password: password,
         });
         setCompanyNameInContext(companyName);
+        setUserNameContext(username);
 
         navigate("/post/home");
       }

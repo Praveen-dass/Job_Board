@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   TextField,
   Button,
@@ -11,15 +11,38 @@ import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
 import { LockOutlined } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { Admincontext } from "../../App";
 
 const UserLogin = () => {
   const [username, setusername] = useState("");
   const [password, setPassword] = useState("");
-  const navigater = useNavigate();
-  const handleSubmit = (e) => {
+  const [uerror, setuerror] = useState(false);
+  const [perror, setperror] = useState(false);
+  const [loginerror,setLoginError] = useState(null);
+  const {setUserNameContext} = useContext(Admincontext);
+  const navigator = useNavigate();
+
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("username:", username);
-    console.log("Password:", password);
+    if(username == "") setuerror(true);
+    if(password == "") setperror(true);
+    
+
+    const user = await axios.get(
+      `http://localhost:8080/user/get/${username}`
+    );
+
+    if (user.data == null) {
+      setLoginError("Username does not exists");
+    } else if(user.data.password != password) {
+      setLoginError("Password is incorrect");
+    }
+    else{
+      setUserNameContext(username);
+      navigator("/getjob");
+    }
   };
 
   return (
@@ -56,8 +79,9 @@ const UserLogin = () => {
               name="username"
               autoComplete="user Name"
               autoFocus
+              error={uerror}
               value={username}
-              onChange={(e) => setusername(e.target.value)}
+              onChange={(e) => {setusername(e.target.value); username == "" ? setuerror(true) : setuerror(false);}}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -76,8 +100,9 @@ const UserLogin = () => {
               type="password"
               id="password"
               autoComplete="current-password"
+              error={perror}
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {setPassword(e.target.value); password == "" ? setperror(true) : setperror(false);}}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -87,15 +112,12 @@ const UserLogin = () => {
               }}
               sx={{ marginBottom: 1 }}
             />
-
+            <p className="text-red-600 px-12">{loginerror}</p>
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 2, mb: 1, padding: "6px 0" }}
-              onClick={() => {
-                navigater("/getjob");
-              }}
             >
               Login
             </Button>

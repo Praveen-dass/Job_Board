@@ -4,9 +4,9 @@ import Navbar from "./Navbar";
 import { Box } from "@mui/material";
 // import Jobs from "./JobsPosted";
 import Cart from "./Cart";
-import { jobcontext } from "../../App";
+import { Admincontext } from "../../App";
 export default function DashBoard() {
-  const {companyname} = useContext(jobcontext);
+  const {companyname} = useContext(Admincontext);
   return (
     <>
       <Navbar />

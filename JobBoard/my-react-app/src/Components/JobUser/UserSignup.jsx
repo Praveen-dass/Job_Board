@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Paper,
   Avatar,
@@ -13,6 +13,7 @@ import {
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import { Admincontext } from "../../App";
 
 const defaultTheme = createTheme();
 
@@ -20,14 +21,13 @@ export default function UserSignup() {
   const navigate = useNavigate();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [companyName, setCompanyName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const {setUserNameContext} = useContext(Admincontext);
 
   const [fnErr, setFnErr] = useState(false);
   const [lnErr, setLnErr] = useState(false);
-  const [cnErr, setCnErr] = useState(false);
   const [unErr, setUnErr] = useState(false);
   const [passErr, setPassErr] = useState(false);
   const [conErr, setConErr] = useState(false);
@@ -38,8 +38,13 @@ export default function UserSignup() {
     e.preventDefault();
 
     try {
+      firstName === "" ? setFnErr(true) : setFnErr(false);
+      lastName === "" ? setLnErr(true) : setLnErr(false);
+      username === "" ? setUnErr(true) : setUnErr(false);
+      password === "" ? setPassErr(true) : setPassErr(false);
+      confirmPassword === "" ? setConErr(true) : setConErr(false);
       const user = await axios.get(
-        `http://localhost:8080/admin/get/${username}`
+        `http://localhost:8080/user/get/${username}`
       );
       console.log(user);
 
@@ -50,30 +55,21 @@ export default function UserSignup() {
       } else if (
         firstName !== "" &&
         lastName !== "" &&
-        companyName !== "" &&
         username !== "" &&
         password !== "" &&
         confirmPassword !== "" &&
         password === confirmPassword
       ) {
-        const api = `http://localhost:8080/admin/post`;
+        const api = `http://localhost:8080/user/post`;
         await axios.post(api, {
-          firstName: firstName,
-          lastName: lastName,
-          companyname: companyName,
+          firstName: firstName+" "+lastName,
           username: username,
           password: password,
         });
-
-        navigate("/post/home");
+        setUserNameContext(username)
+        navigate("/getjob");
       }
 
-      firstName === "" ? setFnErr(true) : setFnErr(false);
-      lastName === "" ? setLnErr(true) : setLnErr(false);
-      companyName === "" ? setCnErr(true) : setCnErr(false);
-      username === "" ? setUnErr(true) : setUnErr(false);
-      password === "" ? setPassErr(true) : setPassErr(false);
-      confirmPassword === "" ? setConErr(true) : setConErr(false);
     } catch (error) {
       console.error("Error:", error);
       setPasswordError("An error occurred. Please try again.");
@@ -224,11 +220,6 @@ export default function UserSignup() {
                 >
                   Register
                 </Button>
-                <Grid container justifyContent="flex-end">
-                  <Grid item>
-                    {/* Add link to login page here if needed */}
-                  </Grid>
-                </Grid>
               </Box>
             </Box>
           </Container>

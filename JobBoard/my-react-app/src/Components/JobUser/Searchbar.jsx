@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
-import { jobcontext } from "../../App";
+import { Admincontext } from "../../App";
 
 function JobSearchForm() {
-  const { jobName, setjobName, location, setLocation } = useContext(jobcontext);
+  const { jobName, setjobName, location, setLocation } = useContext(Admincontext);
 
   //const [location, setLocation] = useState("");
   const handleinput = (e) => {

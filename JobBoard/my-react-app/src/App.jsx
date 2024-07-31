@@ -18,14 +18,15 @@ import AdminLogin from "./Components/JobAdmin/login";
 import ApplyNow from "./Components/JobUser/ApplyNow";
 import UpdateForm from "./Components/JobAdmin/UpdateForm";
 
-export const jobcontext = createContext();
+export const Admincontext = createContext();
 function App() {
   const [jobName, setjobName] = useState("");
   const [location, setLocation] = useState("");
   const [companyname, setCompanyNameInContext] = useState("");
+  const [username,setUserNameContext] = useState("");
 
   return (
-    <jobcontext.Provider value={{ jobName, setjobName, location, setLocation ,companyname, setCompanyNameInContext }}>
+    <Admincontext.Provider value={{ jobName, setjobName, location, setLocation ,companyname, setCompanyNameInContext,username,setUserNameContext }}>
       <Routes>
         <Route path="/" element={<FrontPage />} />
         <Route path="/post/home" element={<Home />} />
@@ -34,7 +35,7 @@ function App() {
         <Route path="/post/form" element={<PostJobForm />} />
         <Route path="/user/applyjob" element={<ApplyNow />} />
         <Route path="/post/dashboard" element={<DashBoard />} />
-        <Route path="cart" element={<Cart></Cart>} />
+        <Route path="/cart" element={<Cart/>} />
         <Route path="/get/review" element={<Companies />} />
         <Route path="/admin/signup" element={<AdminSignup />} />
         <Route path="/admin/login" element={<AdminLogin />} />
@@ -42,7 +43,7 @@ function App() {
         <Route path="/user/login" element={<UserLogin />} />
         <Route path="/job/update" element={<UpdateForm />} />
       </Routes>
-    </jobcontext.Provider>
+    </Admincontext.Provider>
   );
 }
 
