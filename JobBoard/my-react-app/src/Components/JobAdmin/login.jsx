@@ -11,15 +11,31 @@ import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
 import { LockOutlined } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const AdminLogin = () => {
   const [username, setusername] = useState("");
   const [password, setPassword] = useState("");
+  const [loginerror,setLoginError] = useState(null);
   const navigator = useNavigate();
-  const handleSubmit = (e) => {
+
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("username:", username);
-    console.log("Password:", password);
+    
+
+    const user = await axios.get(
+      `http://localhost:8080/admin/get/${username}`
+    );
+
+    if (user.data == null) {
+      setLoginError("Username does not exists");
+    } else if(user.data.password != password) {
+      setLoginError("Password is incorrect");
+    }
+    else{
+      navigator("/post/home");
+    }
   };
 
   return (
@@ -87,13 +103,12 @@ const AdminLogin = () => {
               }}
               sx={{ marginBottom: 1 }}
             />
-
+            <p className="text-red-600 px-12">{loginerror}</p>
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 2, mb: 1, padding: "6px 0" }}
-              onClick={() => navigator("/post/home")}
             >
               Login
             </Button>

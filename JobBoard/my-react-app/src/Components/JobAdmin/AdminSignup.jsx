@@ -49,7 +49,6 @@ export default function AdminSignup() {
       const user = await axios.get(
         `http://localhost:8080/admin/get/${username}`
       );
-      console.log(user);
 
       if (user.data != null) {
         setPasswordError("Username already exists");
