@@ -63,14 +63,15 @@ export default function CompanyDetail() {
     <>
       <UserNavBar />
       <JobSearchForm />
+      
       <div className="container mx-auto">
-        <div className="mx-24 ">
+        <div className="mx-28 ">
           <div className="grid grid-cols-2  gap-4  p-2">
-            <div className="h-[90vh] overflow-y-auto scroll overflow-hidden">
+            <div className="h-[90vh] p-9 mx-7 overflow-y-auto scroll overflow-hidden ">
               {jobs.map((job) => (
                 <div
                   key={job.id}
-                  className="border  rounded-lg my-8"
+                  className="border rounded-lg my-8 shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-xl"
                   onClick={() => handleClick(job)}
                 >
                   <div className="mx-8 my-7">
@@ -79,7 +80,7 @@ export default function CompanyDetail() {
                     <p className="text-lg font-normal">{job.location}</p>
                     <div className="flex flex-row my-3">
                       <p className="mr-8 bg-gray-300 rounded-md px-3 ">
-                        ${job.salary}
+                      ₹{job.salary}
                       </p>
                       <p className="mx-6 bg-gray-300 rounded-md px-3">
                         {job.jobType}
