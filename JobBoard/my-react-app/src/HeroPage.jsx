@@ -2,8 +2,10 @@ import Header from "./Header";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function HeroPage() {
+  const navigater = useNavigate();
   useEffect(() => {
     AOS.init({
       duration: 3000,
@@ -13,20 +15,25 @@ export default function HeroPage() {
   return (
     <div className="container mx-auto">
       <Header />
-      <div className="flex mt-24">
+      <div className="flex mt-24 h-[58vh]">
         <div className="w-[50%]">
-          <div className="my-10 w-[80%] mx-auto space-y-2">
-            <h1 className="text-left text-5xl font-semibold">
-              Beasiswa Pelatihan untuk Perempuan Indonesian
+          <div className=" my-10  w-[80%] mx-auto space-y-2  pb-12 ">
+            <h1 className="text-left text-5xl font-semiboldbold  ">
+              Welcome To Jobizz
             </h1>
-            <p className="text-sm font-base w-[80%]">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Distinctio maxime beatae nobis! Sapiente laborum vitae incidunt
-              quam, pariatur, quia repudiandae reiciendis voluptatum alias iusto
-              eos molestiae adipisci omnis, et velit.
+            <p className="text-lg font-base pl-3 my-12  pt-9 w-[80%]">
+              Your gateway to a brighter career! Unleash your potential by
+              exploring tailored opportunities from top-tier companies. Elevate
+              your journey with Jobizz – where your dream job awaits! Empower
+              your future with personalized career insights.
             </p>
-            <div className="flex justify-start pt-5 space-x-5">
-              <button className="px-5 py-1 bg-yellow-400 rounded py-4 text-black font-medium">
+            <div className="flex justify-start  pt-16  space-x-5">
+              <button
+                className="px-5 py-1 bg-yellow-400 rounded text-black font-medium"
+                onClick={() => {
+                  navigater("/mainpage");
+                }}
+              >
                 Get Started
               </button>
               <button className="px-5 py-1 border border-yellow-400 rounded text-black font-medium">
