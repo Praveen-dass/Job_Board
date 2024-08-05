@@ -1,11 +1,15 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../App.css";
 import formgif from "./images/formgif.jpg";
 import Navbar from "./Navbar";
 import Footer from "../Footer";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import toast, { Toaster } from 'react-hot-toast';
+
+
 const UpdateForm = () => {
+  const {id} = useParams();
   const navigater = useNavigate();
   const [formData, setFormData] = useState({
     jobName: "",
@@ -13,7 +17,7 @@ const UpdateForm = () => {
     salary: "",
     shiftTime: "",
     jobType: "",
-    jobInfo: "",
+    briefDescription: "",
     description: "",
   });
 
@@ -28,35 +32,39 @@ const UpdateForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8080/job/addJob", {
+      await axios.put(`http://localhost:8080/job/updateJob/${id}`, {
+        id:id,
         jobName: formData.jobName,
         companyName: formData.jobName,
         location: formData.location,
         salary: formData.salary,
         shiftTime: formData.shiftTime,
-        description: formData.jobInfo,
+        description: formData.description,
         jobType: formData.jobType,
-        briefDescription: formData.description,
+        briefDescription: formData.briefDescription,
       });
-      alert("Job posted successfully");
-      setFormData({
-        jobName: "",
-        location: "",
-        salary: "",
-        shiftTime: "",
-        jobType: "",
-        jobInfo: "",
-        description: "",
-      });
+      toast.success("Job Update successfully");
     } catch (e) {
       console.error("Error: " + e);
-      alert("Job posting failed");
+      toast.error("Job is not Updated")
     }
   };
+
+  useEffect(() => {
+    const fetchDefault = async () => {
+      await axios.get(`http://localhost:8080/job/${id}`)
+                  .then((r) => setFormData(r.data));
+    }
+    fetchDefault();
+  },[])
 
   return (
     <>
       <Navbar />
+      <Toaster
+        position="top-right"
+        reverseOrder={true}
+      />
       <div className="mx-auto ">
         <form
           onSubmit={handleSubmit}
@@ -110,8 +118,8 @@ const UpdateForm = () => {
               </label>
               <textarea
                 id="jobInfo"
-                name="jobInfo"
-                value={formData.jobInfo}
+                name="description"
+                value={formData.description}
                 onChange={handleChange}
                 rows={1}
                 className="shadow appearance-none border border-blue-500  rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:border-b-4 focus:shadow-outline"
@@ -128,8 +136,8 @@ const UpdateForm = () => {
               </label>
               <textarea
                 id="description"
-                name="description"
-                value={formData.description}
+                name="briefDescription"
+                value={formData.briefDescription}
                 onChange={handleChange}
                 rows={2}
                 className="shadow appearance-none border border-blue-500  rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:border-b-4 focus:shadow-outline"

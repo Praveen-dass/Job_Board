@@ -1,9 +1,11 @@
 import axios from "axios";
 import React, { useState } from "react";
 import ExperienceDetails from "./ExperienceDetail";
-import formgif from "../../assets/formgif.jpg";
+import formgif from "./images/applynowimg.svg";
 import "../../App.css";
 import { useNavigate } from "react-router-dom";
+import UserNavBar from "./userNavbar";
+import Footer from "../Footer";
 
 const ApplyNow = () => {
   const navigater = useNavigate();
@@ -73,8 +75,10 @@ const ApplyNow = () => {
   };
 
   return (
+    <>
+    <UserNavBar />
     <div className="mx-auto mt-6  container px-28">
-      <img src={formgif} className="mx-44" />
+      <img src={formgif} className="mx-44 h-[400px] w-[850px]" />
       <form onSubmit={handleSubmit} className="mx-auto px-12 py-8 my-8  ">
         <div className="">
           <div className="mb-2">
@@ -260,6 +264,8 @@ const ApplyNow = () => {
         </div>
       </form>
     </div>
+    <Footer />
+    </>
   );
 };
 
