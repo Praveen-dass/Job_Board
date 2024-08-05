@@ -19,7 +19,8 @@ import ApplyNow from "./Components/JobUser/ApplyNow";
 import UpdateForm from "./Components/JobAdmin/UpdateForm";
 import HeroPage from "./HeroPage";
 import SkillTestForm from "./Components/JobUser/SkillTestForm";
-import { Profile } from "./Components/JobUser/Profile";
+import LoginPage from "./Components/LoginPage.jsx";
+import SignUpPage from "./Components/SignUpPage.jsx";import { Profile } from "./Components/JobUser/Profile";
 
 export const Admincontext = createContext();
 function App() {
@@ -58,7 +59,6 @@ function App() {
           <Route path="/job/update/:id" Component={UpdateForm} element={<UpdateForm />} />
           <Route path="/mainpage" element={<FrontPage />} />
           <Route path="/check" element={<SkillTestForm/>} />
-          <Route path="/user/profile" element={<Profile />}/>
         </Routes>
       </Admincontext.Provider>
   );

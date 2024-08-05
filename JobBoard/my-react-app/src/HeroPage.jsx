@@ -27,22 +27,27 @@ export default function HeroPage() {
               your journey with Jobizz – where your dream job awaits! Empower
               your future with personalized career insights.
             </p>
-            <div className="flex justify-start  pt-16  space-x-5">
+            <div className="flex justify-start  pt-12  space-x-5">
               <button
                 className="px-5 py-1 bg-yellow-400 rounded text-black font-medium"
                 onClick={() => {
-                  navigater("/mainpage");
+                  navigater("/loginpage");
                 }}
               >
-                Get Started
+                Login
               </button>
-              <button className="px-5 py-1 border border-yellow-400 rounded text-black font-medium">
-                Learn More
+              <button
+                className="px-5 py-1 border border-yellow-400 rounded text-black font-medium"
+                onClick={() => {
+                  navigater("/signUpPage");
+                }}
+              >
+                Sign Up
               </button>
             </div>
           </div>
         </div>
-        <div className="w-[50%]">
+        <div className="w-[50%] mr-16">
           <div className="grid grid-cols-12 h-full w-full gap-5">
             <div
               data-aos="flip-left"

@@ -45,3 +45,11 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
+
+.img
+{
+  background-image: url('./assets/logback.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

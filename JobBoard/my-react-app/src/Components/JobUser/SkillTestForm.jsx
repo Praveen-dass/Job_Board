@@ -112,8 +112,8 @@ const SkillTestForm = () => {
 
   return (
     <div className="container mx-auto min-h-screen  flex ">
-      <div className="w-[50%] h-[100vh]">
-        <div className="mt-[24%]">
+      <div className="w-[50%] h-[100vh]  pl-28">
+        <div className="mt-[20%]">
           <p className="text-7xl font-base">Welcome,</p>
           <p className="text-5xl font-base">Let us tell about Yourself</p>
         </div>
