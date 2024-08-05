@@ -9,7 +9,10 @@ import SignUpPage from "./Components/SignUpPage.jsx";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <Toaster />
+       <Toaster
+        position="top-right"
+        reverseOrder={true}
+      />
       <App />
     </BrowserRouter>
   </React.StrictMode>

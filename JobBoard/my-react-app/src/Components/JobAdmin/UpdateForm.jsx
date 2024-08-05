@@ -61,10 +61,6 @@ const UpdateForm = () => {
   return (
     <>
       <Navbar />
-      <Toaster
-        position="top-right"
-        reverseOrder={true}
-      />
       <div className="mx-auto ">
         <form
           onSubmit={handleSubmit}
