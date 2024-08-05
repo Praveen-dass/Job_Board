@@ -20,7 +20,7 @@ const AdminLogin = () => {
   const [uerror, setuerror] = useState(false);
   const [perror, setperror] = useState(false);
   const [loginerror,setLoginError] = useState(null);
-  const {setUserNameContext} = useContext(Admincontext);
+  const {setUserNameContext,  setCompanyNameInContext} = useContext(Admincontext);
   const navigator = useNavigate();
 
 
@@ -41,6 +41,7 @@ const AdminLogin = () => {
     }
     else{
       setUserNameContext(username);
+      setCompanyNameInContext(user.data.companyname)
       navigator("/post/home");
     }
   };
