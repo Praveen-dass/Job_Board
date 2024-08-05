@@ -59,6 +59,9 @@ function App() {
           <Route path="/job/update/:id" Component={UpdateForm} element={<UpdateForm />} />
           <Route path="/mainpage" element={<FrontPage />} />
           <Route path="/check" element={<SkillTestForm/>} />
+          <Route path="/loginpage" element={<LoginPage />} />
+          <Route path="/signUpPage" element={<SignUpPage />} />
+          <Route path="/user/Profile" element={<Profile />} />
         </Routes>
       </Admincontext.Provider>
   );
