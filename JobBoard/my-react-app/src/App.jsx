@@ -18,6 +18,7 @@ import AdminLogin from "./Components/JobAdmin/login";
 import ApplyNow from "./Components/JobUser/ApplyNow";
 import UpdateForm from "./Components/JobAdmin/UpdateForm";
 import HeroPage from "./HeroPage";
+import { Toaster } from "react-hot-toast";
 
 export const Admincontext = createContext();
 function App() {
@@ -27,36 +28,39 @@ function App() {
   const [username, setUserNameContext] = useState("");
 
   return (
-    <Admincontext.Provider
-      value={{
-        jobName,
-        setjobName,
-        location,
-        setLocation,
-        companyname,
-        setCompanyNameInContext,
-        username,
-        setUserNameContext,
-      }}
-    >
-      <Routes>
-        <Route path="/" element={<HeroPage />} />
-        <Route path="/post/home" element={<Home />} />
-        <Route path="/postjob" element={<JobPostPage />} />
-        <Route path="/getjob" element={<CompanyDetail />} />
-        <Route path="/post/form" element={<PostJobForm />} />
-        <Route path="/user/applyjob" element={<ApplyNow />} />
-        <Route path="/post/dashboard" element={<DashBoard />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/get/review" element={<Companies />} />
-        <Route path="/admin/signup" element={<AdminSignup />} />
-        <Route path="/admin/login" element={<AdminLogin />} />
-        <Route path="/user/signup" element={<UserSignup />} />
-        <Route path="/user/login" element={<UserLogin />} />
-        <Route path="/job/update" element={<UpdateForm />} />
-        <Route path="/mainpage" element={<FrontPage />} />
-      </Routes>
-    </Admincontext.Provider>
+    <div>
+      <Toaster />
+      <Admincontext.Provider
+        value={{
+          jobName,
+          setjobName,
+          location,
+          setLocation,
+          companyname,
+          setCompanyNameInContext,
+          username,
+          setUserNameContext,
+        }}
+      >
+        <Routes>
+          <Route path="/" element={<HeroPage />} />
+          <Route path="/post/home" element={<Home />} />
+          <Route path="/postjob" element={<JobPostPage />} />
+          <Route path="/getjob" element={<CompanyDetail />} />
+          <Route path="/post/form" element={<PostJobForm />} />
+          <Route path="/user/applyjob" element={<ApplyNow />} />
+          <Route path="/post/dashboard" element={<DashBoard />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/get/review" element={<Companies />} />
+          <Route path="/admin/signup" element={<AdminSignup />} />
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/user/signup" element={<UserSignup />} />
+          <Route path="/user/login" element={<UserLogin />} />
+          <Route path="/job/update" element={<UpdateForm />} />
+          <Route path="/mainpage" element={<FrontPage />} />
+        </Routes>
+      </Admincontext.Provider>
+    </div>
   );
 }
 
