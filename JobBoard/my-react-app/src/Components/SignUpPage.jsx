@@ -26,7 +26,7 @@ function SignUpPage() {
           </div>
           <div className="flex flex-col items-center justify-center flex-1 p-10 bg-[#d8a0df] text-white rounded-lg shadow-md">
             <h2 className="text-3xl font-bold">Employee</h2>
-            <p className="font-semibold text-center mt-5 border border-gray-100 w-full py-2">
+            <p className="font-semibold text-center mt-5 border border-gray-100 w-full py-2 px-2">
               If you are an Employee, click here to Sign Up
             </p>
             <button

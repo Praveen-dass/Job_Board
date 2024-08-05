@@ -43,7 +43,7 @@ export default function UserDetail() {
   const pageCount = Math.ceil(users.length / usersPerPage);
 
   return (
-    <Box className="h-[100vh] w-[60%]  container mx-auto p-4">
+    <Box className="h-[100vh] w-[60%]  container mx-auto ">
       <TableContainer component={Paper} className="mt-[1%]">
         <Table>
           <TableHead className="bg-blue-50 border-4 shadow-lg shadow-blue-500/100">

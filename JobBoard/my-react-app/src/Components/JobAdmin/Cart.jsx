@@ -1,14 +1,18 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { Admincontext } from "../../App";
 export default function Cart() {
+  const { companyname } = useContext(Admincontext);
   const navigater = useNavigate();
   const [jobs, setJobs] = useState([]);
   useEffect(() => {
+    console.log(companyname);
     const fetch = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/job/getJob");
+        const response = await axios.get(
+          `http://localhost:8080/job/getJob/${companyname}`
+        );
         setJobs(response.data);
         console.log(response);
       } catch (e) {
@@ -31,8 +35,8 @@ export default function Cart() {
   };
   return (
     <div className="container mx-auto ">
-      <div className=" w-[90%] flex justify-center mx-auto">
-        <div className="grid grid-cols-3 gap-3 w-full py-10 border">
+      <div className=" w-[90%] flex justify-center mx-32">
+        <div className="grid grid-cols-3 gap-3 w-full py-10  px-10 ">
           {jobs.map((job) => (
             <div className="border border-black rounded-lg" key={job.id}>
               <div className="m-3">

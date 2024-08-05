@@ -1,10 +1,12 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "../../App.css";
 import formgif from "./images/formgif.jpg";
 import Navbar from "./Navbar";
 import Footer from "../Footer";
+import { Admincontext } from "../../App";
 const PostJobForm = () => {
+  const { companyname } = useContext(Admincontext);
   const [formData, setFormData] = useState({
     jobName: "",
     location: "",
@@ -28,7 +30,7 @@ const PostJobForm = () => {
     try {
       await axios.post("http://localhost:8080/job/addJob", {
         jobName: formData.jobName,
-        companyName: formData.jobName,
+        companyName: companyname,
         location: formData.location,
         salary: formData.salary,
         shiftTime: formData.shiftTime,
@@ -37,6 +39,7 @@ const PostJobForm = () => {
         briefDescription: formData.description,
       });
       alert("Job posted successfully");
+      console.log(formData);
       setFormData({
         jobName: "",
         location: "",

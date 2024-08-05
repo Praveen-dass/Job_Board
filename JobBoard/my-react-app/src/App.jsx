@@ -21,6 +21,7 @@ import HeroPage from "./HeroPage";
 import SkillTestForm from "./Components/JobUser/SkillTestForm";
 import LoginPage from "./Components/LoginPage.jsx";
 import SignUpPage from "./Components/SignUpPage.jsx";
+import UserDetail from "./Components/JobAdmin/UserDetail.jsx";
 export const Admincontext = createContext();
 function App() {
   const [jobName, setjobName] = useState("");
@@ -50,6 +51,7 @@ function App() {
         <Route path="/user/applyjob" element={<ApplyNow />} />
         <Route path="/post/dashboard" element={<DashBoard />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="userdetails" element={<UserDetail />} />
         <Route path="/get/review" element={<Companies />} />
         <Route path="/admin/signup" element={<AdminSignup />} />
         <Route path="/admin/login" element={<AdminLogin />} />
