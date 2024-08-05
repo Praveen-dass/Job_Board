@@ -18,7 +18,7 @@ import AdminLogin from "./Components/JobAdmin/login";
 import ApplyNow from "./Components/JobUser/ApplyNow";
 import UpdateForm from "./Components/JobAdmin/UpdateForm";
 import HeroPage from "./HeroPage";
-import { Toaster } from "react-hot-toast";
+import SkillTestForm from "./Components/JobUser/SkillTestForm";
 
 export const Admincontext = createContext();
 function App() {
@@ -28,8 +28,6 @@ function App() {
   const [username, setUserNameContext] = useState("");
 
   return (
-    <div>
-      <Toaster />
       <Admincontext.Provider
         value={{
           jobName,
@@ -56,11 +54,11 @@ function App() {
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/user/signup" element={<UserSignup />} />
           <Route path="/user/login" element={<UserLogin />} />
-          <Route path="/job/update" element={<UpdateForm />} />
+          <Route path="/job/update/:id" Component={UpdateForm} element={<UpdateForm />} />
           <Route path="/mainpage" element={<FrontPage />} />
+          <Route path="/check" element={<SkillTestForm/>} />
         </Routes>
       </Admincontext.Provider>
-    </div>
   );
 }
 
