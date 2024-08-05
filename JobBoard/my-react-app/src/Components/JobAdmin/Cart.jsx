@@ -44,8 +44,8 @@ export default function Cart() {
                 <p className="text-1xl font-semibold my-2">{job.location}</p>
               </div>
               <div className="flex  m-3 space-x-8">
-                <p>{job.salary}</p>
-                <p>{job.shiftTime}</p>
+                <p>₹{job.salary}</p>
+                <p>•{job.shiftTime}</p>
               </div>
               <div className="m-3">
                 <p>Posted 6 days ago</p>

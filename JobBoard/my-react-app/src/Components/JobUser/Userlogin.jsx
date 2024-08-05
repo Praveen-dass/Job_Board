@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   TextField,
   Button,
@@ -19,29 +19,31 @@ const UserLogin = () => {
   const [password, setPassword] = useState("");
   const [uerror, setuerror] = useState(false);
   const [perror, setperror] = useState(false);
-  const [loginerror,setLoginError] = useState(null);
-  const {setUserNameContext} = useContext(Admincontext);
+  const [loginerror, setLoginError] = useState(null);
+  const { setUserNameContext } = useContext(Admincontext);
   const navigator = useNavigate();
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if(username == "") setuerror(true);
-    if(password == "") setperror(true);
-    
+    setuerror(username === "");
+    setperror(password === "");
+    if (username === "" || password === "") return;
 
-    const user = await axios.get(
-      `http://localhost:8080/user/get/${username}`
-    );
+    try {
+      const user = await axios.get(
+        `http://localhost:8080/user/get/${username}`
+      );
 
-    if (user.data == null) {
-      setLoginError("Username does not exists");
-    } else if(user.data.password != password) {
-      setLoginError("Password is incorrect");
-    }
-    else{
-      setUserNameContext(username);
-      navigator("/getjob");
+      if (user.data == null) {
+        setLoginError("Username does not exist");
+      } else if (user.data.password !== password) {
+        setLoginError("Password is incorrect");
+      } else {
+        setUserNameContext(username);
+        navigator("/getjob");
+      }
+    } catch (error) {
+      setLoginError("An error occurred while logging in");
     }
   };
 
@@ -74,14 +76,17 @@ const UserLogin = () => {
               margin="normal"
               required
               fullWidth
-              id="email"
+              id="username"
               label="User Name"
               name="username"
-              autoComplete="user Name"
+              autoComplete="username"
               autoFocus
               error={uerror}
               value={username}
-              onChange={(e) => {setusername(e.target.value); username == "" ? setuerror(true) : setuerror(false);}}
+              onChange={(e) => {
+                setusername(e.target.value);
+                setuerror(false);
+              }}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -89,7 +94,14 @@ const UserLogin = () => {
                   </InputAdornment>
                 ),
               }}
-              sx={{ marginBottom: 1 }}
+              sx={{
+                marginBottom: 1,
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": {
+                    borderColor: username === "" ? "red" : "rgba(0, 86, 179, 1)",
+                  },
+                },
+              }}
             />
             <TextField
               margin="normal"
@@ -102,7 +114,10 @@ const UserLogin = () => {
               autoComplete="current-password"
               error={perror}
               value={password}
-              onChange={(e) => {setPassword(e.target.value); password == "" ? setperror(true) : setperror(false);}}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                setperror(false);
+              }}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -110,7 +125,14 @@ const UserLogin = () => {
                   </InputAdornment>
                 ),
               }}
-              sx={{ marginBottom: 1 }}
+              sx={{
+                marginBottom: 1,
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": {
+                    borderColor: password === "" ? "red" : "rgba(0, 86, 179, 1)",
+                  },
+                },
+              }}
             />
             <p className="text-red-600 px-12">{loginerror}</p>
             <Button
