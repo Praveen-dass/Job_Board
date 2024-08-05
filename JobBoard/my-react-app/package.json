@@ -17,8 +17,10 @@
     "aos": "^3.0.0-beta.6",
     "axios": "^1.7.2",
     "lucide-react": "^0.417.0",
+    "my-react-app": "file:",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-hot-toast": "^2.4.1",
     "react-router-dom": "^6.25.1"
   },
   "devDependencies": {

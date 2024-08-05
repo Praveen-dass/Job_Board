@@ -53,7 +53,7 @@ export default function Cart() {
                 <button
                   className="text-sm font-semibold bg-orange-600   text-white py-1 px-5 rounded-lg uppercase"
                   onClick={() => {
-                    navigater("/job/update");
+                    navigater(`/job/update/${job.id}`);
                   }}
                 >
                   Update

@@ -22,8 +22,7 @@ export default function DashBoard() {
             margin: "10px 0px 0px 10px",
           }}
         >
-          <p>{companyname}</p>
-          <Cart></Cart>
+          <Cart />
         </Box>
       </Box>
     </>

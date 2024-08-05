@@ -53,7 +53,7 @@ function App() {
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/user/signup" element={<UserSignup />} />
         <Route path="/user/login" element={<UserLogin />} />
-        <Route path="/job/update" element={<UpdateForm />} />
+        <Route path="/job/update/:id" Component={UpdateForm} element={<UpdateForm />} />
         <Route path="/mainpage" element={<FrontPage />} />
       </Routes>
     </Admincontext.Provider>
