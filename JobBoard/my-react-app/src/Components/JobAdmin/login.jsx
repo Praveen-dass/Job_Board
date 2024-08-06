@@ -43,6 +43,8 @@ const AdminLogin = () => {
       } else {
         setUserNameContext(username);
         setCompanyNameInContext(user.data.companyname);
+        localStorage.setItem('username',username);
+        localStorage.setItem('companyname',user.data.companyname);
         navigator("/post/home");
       }
     } catch (error) {

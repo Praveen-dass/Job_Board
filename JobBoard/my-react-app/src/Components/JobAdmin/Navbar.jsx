@@ -1,14 +1,23 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Admincontext } from "../../App";
 
 const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const { username } = useContext(Admincontext);
+  const { username,setUserNameContext,companyname, setCompanyNameInContext } = useContext(Admincontext);
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
+
+  useEffect(()=>{
+    if(username == ""){
+      setUserNameContext(localStorage.getItem('username'));
+    }
+    if(companyname == ""){
+      setCompanyNameInContext(localStorage.getItem('companyname'));
+    }
+  },[])
 
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
@@ -128,6 +137,7 @@ const Navbar = () => {
               <div className="py-1">
                 <Link
                   to="/"
+                  onClick={() => {localStorage.setItem('username',"");localStorage.setItem('companyname',"")}}
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                 >
                   Sign out

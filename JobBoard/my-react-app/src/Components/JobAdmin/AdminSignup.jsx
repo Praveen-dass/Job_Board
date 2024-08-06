@@ -74,6 +74,8 @@ export default function AdminSignup() {
         });
         setCompanyNameInContext(companyName);
         setUserNameContext(username);
+        localStorage.setItem('username',username);
+        localStorage.setItem('companyname',companyName);
 
         navigate("/post/home");
       }

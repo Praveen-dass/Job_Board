@@ -55,14 +55,6 @@ const UserNavBar = () => {
                 About Us
               </Link>
             </li>
-            <li>
-              <a
-                href="#"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-              >
-                Contact
-              </a>
-            </li>
           </ul>
         </div>
         <div className="relative flex items-center">
@@ -90,6 +82,13 @@ const UserNavBar = () => {
                 d="M1 1h15M1 7h15M1 13h15"
               />
             </svg>
+          </button>
+          <button
+            type="button"
+            class="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2"
+            onClick={() => navigator("/check")}
+          >
+            SKILL TEST
           </button>
           <button
             class="relative inline-flex items-center justify-center p-0.5 mr-5  me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800"
