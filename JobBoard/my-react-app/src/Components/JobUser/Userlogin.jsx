@@ -45,7 +45,7 @@ const UserLogin = () => {
         navigator("/getjob");
       }
     } catch (error) {
-      setLoginError("An error occurred while logging in");
+      setLoginError("An error occurred ");
     }
   };
 
