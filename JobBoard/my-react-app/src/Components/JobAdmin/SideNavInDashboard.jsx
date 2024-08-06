@@ -78,9 +78,8 @@ export default function SideNavInDashboard() {
                 </a>
               </li>
               <li>
-                <a
-                  rel="noopener noreferrer"
-                  href="#"
+                <Link
+                  to="/"
                   className="flex items-center p-2 space-x-3 rounded-md"
                 >
                   <svg
@@ -92,7 +91,7 @@ export default function SideNavInDashboard() {
                     <rect width="32" height="64" x="256" y="232"></rect>
                   </svg>
                   <span>Logout</span>
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

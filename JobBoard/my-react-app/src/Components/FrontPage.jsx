@@ -5,19 +5,20 @@ import Post from "./FrontPageChild3";
 import Stats from "./FrontPageChild4";
 import Footer from "./Footer";
 import { Container } from "@mui/material";
+import Header from "../Header";
 
+export default function FrontPage() {
+  return (
+    <>
+      <Header></Header>
 
-export default function FrontPage(){
-    return(
-        <>
-            <Container >
-                <FrontPage1 />
-                <SignUp />
-                <Post />
-                <Stats />
-            </Container>
-        <Footer />
-        </>
-
-    )
+      <Container>
+        <FrontPage1 />
+        {/* <SignUp /> */}
+        <Post />
+        <Stats />
+      </Container>
+      <Footer />
+    </>
+  );
 }

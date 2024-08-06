@@ -22,6 +22,7 @@ import SkillTestForm from "./Components/JobUser/SkillTestForm";
 import LoginPage from "./Components/LoginPage.jsx";
 import SignUpPage from "./Components/SignUpPage.jsx";
 import { Profile } from "./Components/JobUser/Profile";
+import UserDetail from "./Components/JobAdmin/UserDetail.jsx";
 
 export const Admincontext = createContext();
 function App() {
@@ -63,6 +64,7 @@ function App() {
           element={<UpdateForm />}
         />
         <Route path="/mainpage" element={<FrontPage />} />
+        <Route path="/userdetails" element={<UserDetail />} />
         <Route path="/check" element={<SkillTestForm />} />
         <Route path="/loginpage" element={<LoginPage />} />
         <Route path="/signUpPage" element={<SignUpPage />} />
