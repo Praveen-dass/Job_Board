@@ -1,15 +1,17 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../../App.css";
 import formgif from "./images/formgif.jpg";
 import Navbar from "./Navbar";
 import Footer from "../Footer";
 import { useNavigate, useParams } from "react-router-dom";
-import toast, { Toaster } from 'react-hot-toast';
-
+import toast, { Toaster } from "react-hot-toast";
+import AdminLogin from "./login";
+import { Admincontext } from "../../App";
 
 const UpdateForm = () => {
-  const {id} = useParams();
+  const { id } = useParams();
+  const { companyname } = useContext(Admincontext);
   const navigater = useNavigate();
   const [formData, setFormData] = useState({
     jobName: "",
@@ -31,11 +33,12 @@ const UpdateForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(id);
     try {
       await axios.put(`http://localhost:8080/job/updateJob/${id}`, {
-        id:id,
+        id: id,
         jobName: formData.jobName,
-        companyName: formData.jobName,
+        companyName: companyname,
         location: formData.location,
         salary: formData.salary,
         shiftTime: formData.shiftTime,
@@ -46,17 +49,18 @@ const UpdateForm = () => {
       toast.success("Job Update successfully");
     } catch (e) {
       console.error("Error: " + e);
-      toast.error("Job is not Updated")
+      toast.error("Job is not Updated");
     }
   };
 
   useEffect(() => {
     const fetchDefault = async () => {
-      await axios.get(`http://localhost:8080/job/${id}`)
-                  .then((r) => setFormData(r.data));
-    }
+      await axios
+        .get(`http://localhost:8080/job/${id}`)
+        .then((r) => setFormData(r.data));
+    };
     fetchDefault();
-  },[])
+  }, []);
 
   return (
     <>

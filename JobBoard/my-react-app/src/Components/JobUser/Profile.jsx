@@ -9,7 +9,13 @@ import toast from "react-hot-toast";
 export const Profile = () => {
   const [update, setUpdate] = useState(false);
   const { username, setUserNameContext } = useContext(Admincontext);
-  const [profiledata, setProfileData] = useState({});
+  const [profiledata, setProfileData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    jobrole: "",
+    about: "",
+  });
   const [formdata, setFormData] = useState({
     username: username,
     name: "",
@@ -42,9 +48,9 @@ export const Profile = () => {
   };
 
   useEffect(() => {
-    if (username == "") {
-      setUserNameContext(localStorage.getItem("username"));
-    }
+    // if (username == "") {
+    //   setUserNameContext(localStorage.getItem("username"));
+    // }
     const getFromDb = async () => {
       await axios
         .get(`http://localhost:8080/user/profile/get/${username}`)
