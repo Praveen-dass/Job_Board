@@ -73,7 +73,7 @@ export default function UserSignup() {
 
     } catch (error) {
       console.error("Error:", error);
-      setPasswordError("An error occurred. Please try again.");
+      setPasswordError("An error occurred. Please try again");
     }
   };
 
