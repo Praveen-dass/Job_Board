@@ -3,7 +3,10 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 
 import jobpic from "../../assets/skill.jpg";
+import UserNavBar from "./userNavbar";
+import { useNavigate } from "react-router-dom";
 const SkillTestForm = () => {
+  const navigator = useNavigate();
   const [step, setStep] = useState(1);
   const [sectors, setSectors] = useState([]);
   const [options, setOptions] = useState([]);
@@ -103,14 +106,18 @@ const SkillTestForm = () => {
       .post("http://localhost:8080/api/formData", payload)
       .then((response) => {
         toast.success("Data submitted successfully");
+        navigator("/user/Profile")
         console.log(response.data);
       })
       .catch((error) => {
         console.error("There was an error submitting the form!", error);
       });
+
   };
 
   return (
+    <>
+    <UserNavBar />
     <div className="container mx-auto min-h-screen  flex ">
       <div className="w-[50%] h-[100vh]  pl-28">
         <div className="mt-[20%]">
@@ -298,6 +305,7 @@ const SkillTestForm = () => {
         </form>
       </div>
     </div>
+    </>
   );
 };
 
