@@ -1,15 +1,21 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Admincontext } from "../../App";
 
 const UserNavBar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const {username} = useContext(Admincontext);
+  const {username,setUserNameContext} = useContext(Admincontext);
   const navigator = useNavigate();
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
+
+  useEffect(()=>{
+    if(username == ""){
+      setUserNameContext(localStorage.getItem("username"));
+    }
+  },[])
 
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
@@ -159,6 +165,7 @@ const UserNavBar = () => {
                 <Link
                   to="/"
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                  onClick={() => localStorage.setItem('username',"")}
                 >
                   Sign out
                 </Link>

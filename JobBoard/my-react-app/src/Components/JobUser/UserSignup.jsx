@@ -66,7 +66,8 @@ export default function UserSignup() {
           username: username,
           password: password,
         });
-        setUserNameContext(username)
+        setUserNameContext(username);
+        localStorage.setItem('username',username);
         navigate("/getjob");
       }
 

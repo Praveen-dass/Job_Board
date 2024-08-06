@@ -1,10 +1,55 @@
 import Footer from "../Footer";
 import UserNavBar from "./userNavbar";
 import profileimg from "./images/blank-profile-picture.webp";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { Admincontext } from "../../App";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 export const Profile = () => {
     const [update, setUpdate] = useState(false);
+    const {username , setUserNameContext} = useContext(Admincontext);
+    const [profiledata,setProfileData] = useState({});
+    const [formdata,setFormData] = useState({
+        username:username,
+        name: '',
+        email: '',
+        phone: '',
+        jobrole: '',
+        about: ''
+    });
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try{
+            await axios.put(`http://localhost:8080/user/profile/update/${username}`,formdata);
+            toast.success("Profile Update successfully");
+        }
+        catch(e){
+            toast.error("Profile Update Failed");
+        }
+    }
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    }
+
+    useEffect(()=>{
+        if(username == ""){
+            setUserNameContext(localStorage.getItem('username'));
+        }
+        const getFromDb = async ()=>{
+            await axios.get(`http://localhost:8080/user/profile/get/${username}`)
+            .then((r) => {setProfileData(r.data);setFormData(r.data);})
+            .error((e) => console.error(e))
+        }
+        getFromDb();
+    },[])
 
     return (
         <>
@@ -16,8 +61,8 @@ export const Profile = () => {
                             <div className="bg-white shadow rounded-lg p-6">
                                 <div className="flex flex-col items-center">
                                     <img src={profileimg} className="w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0" alt="Profile" />
-                                    <h1 className="text-xl font-bold">John Doe</h1>
-                                    <p className="text-gray-700">Software Developer</p>
+                                    <h1 className="text-xl font-bold">{profiledata.name}</h1>
+                                    <p className="text-gray-700">{profiledata.jobrole}</p>
                                     <div className="mt-6 flex flex-wrap gap-4 justify-center">
                                         <button onClick={() => setUpdate(true)} className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">Update</button>
                                         <a href="#" className="bg-gray-300 hover:bg-gray-400 text-gray-700 py-2 px-4 rounded">Resume</a>
@@ -40,11 +85,12 @@ export const Profile = () => {
                             <div className="bg-white shadow rounded-lg p-6">
                                 <h2 className="text-xl font-bold mb-4">About Me</h2>
                                 <p className="text-gray-700">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus est
+                                    {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus est
                                     vitae tortor ullamcorper, ut vestibulum velit convallis. Aenean posuere risus non velit egestas
                                     suscipit. Nunc finibus vel ante id euismod. Vestibulum ante ipsum primis in faucibus orci luctus
                                     et ultrices posuere cubilia Curae; Aliquam erat volutpat. Nulla vulputate pharetra tellus, in
-                                    luctus risus rhoncus id.
+                                    luctus risus rhoncus id. */}
+                                    {profiledata.about}
                                 </p>
 
                                 <h3 className="font-semibold text-center mt-3 -mb-2">Find me on</h3>
@@ -75,27 +121,34 @@ export const Profile = () => {
                             {update && (
                                 <div className="mt-8 bg-white shadow rounded-lg p-6">
                                     <h2 className="text-xl font-bold mb-4">Update Profile</h2>
-                                    <form>
+                                    <form onSubmit={handleSubmit} onChange={handleChange}>
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                             <div className="mb-4">
                                                 <label className="block text-gray-700 font-bold mb-2">First Name</label>
                                                 <input
+                                                    name="name"
                                                     type="text"
+                                                    value={formdata.name}
                                                     className="w-full p-2 border border-gray-300 rounded"
                                                     placeholder="John"
                                                 />
                                             </div>
-                                            <div className="mb-4">
+                                            {/* <div className="mb-4">
                                                 <label className="block text-gray-700 font-bold mb-2">Last Name</label>
                                                 <input
+                                                    name="lastname"
                                                     type="text"
+                                                    onChange={(e) => setlastname(e.target.value)}
+                                                    value={lastname}
                                                     className="w-full p-2 border border-gray-300 rounded"
                                                     placeholder="Doe"
                                                 />
-                                            </div>
+                                            </div> */}
                                             <div className="mb-4">
                                                 <label className="block text-gray-700 font-bold mb-2">Email</label>
                                                 <input
+                                                    name="email"
+                                                    value={formdata.email}
                                                     type="email"
                                                     className="w-full p-2 border border-gray-300 rounded"
                                                     placeholder="johndoe@example.com"
@@ -104,12 +157,14 @@ export const Profile = () => {
                                             <div className="mb-4">
                                                 <label className="block text-gray-700 font-bold mb-2">Phone</label>
                                                 <input
+                                                    name="phone"
+                                                    value={formdata.phone}
                                                     type="tel"
                                                     className="w-full p-2 border border-gray-300 rounded"
                                                     placeholder="+919123456788"
                                                 />
                                             </div>
-                                            <div className="mb-4">
+                                            {/* <div className="mb-4">
                                                 <label className="block text-gray-700 font-bold mb-2">Password</label>
                                                 <input
                                                     type="password"
@@ -124,10 +179,12 @@ export const Profile = () => {
                                                     className="w-full p-2 border border-gray-300 rounded"
                                                     placeholder="********"
                                                 />
-                                            </div>
+                                            </div> */}
                                             <div className="mb-4">
                                                 <label className="block text-gray-700 font-bold mb-2">Job Type</label>
                                                 <input
+                                                    name="jobrole"
+                                                    value={formdata.jobrole}
                                                     type="text"
                                                     className="w-full p-2 border border-gray-300 rounded"
                                                     placeholder="Software Developer"
@@ -137,6 +194,8 @@ export const Profile = () => {
                                         <div className="mb-4">
                                             <label className="block text-gray-700 font-bold mb-2">About</label>
                                             <textarea
+                                                name="about"
+                                                value={formdata.about}
                                                 className="w-full p-2 border border-gray-300 rounded"
                                                 placeholder="Enter something about yourself..."
                                             ></textarea>

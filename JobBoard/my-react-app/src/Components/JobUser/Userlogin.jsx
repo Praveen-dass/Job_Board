@@ -33,6 +33,7 @@ const UserLogin = () => {
       const user = await axios.get(
         `http://localhost:8080/user/get/${username}`
       );
+      console.log(user.data);
 
       if (user.data == null) {
         setLoginError("Username does not exist");
@@ -40,6 +41,7 @@ const UserLogin = () => {
         setLoginError("Password is incorrect");
       } else {
         setUserNameContext(username);
+        localStorage.setItem('username',username);
         navigator("/getjob");
       }
     } catch (error) {
@@ -86,6 +88,7 @@ const UserLogin = () => {
               onChange={(e) => {
                 setusername(e.target.value);
                 setuerror(false);
+                setLoginError(null); // Clear login error when user types
               }}
               InputProps={{
                 startAdornment: (
@@ -98,7 +101,7 @@ const UserLogin = () => {
                 marginBottom: 1,
                 "& .MuiOutlinedInput-root": {
                   "& fieldset": {
-                    borderColor: username === "" ? "red" : "rgba(0, 86, 179, 1)",
+                    borderColor: uerror ? "red" : "rgba(0, 86, 179, 1)",
                   },
                 },
               }}
@@ -117,6 +120,7 @@ const UserLogin = () => {
               onChange={(e) => {
                 setPassword(e.target.value);
                 setperror(false);
+                setLoginError(null); // Clear login error when user types
               }}
               InputProps={{
                 startAdornment: (
@@ -129,12 +133,12 @@ const UserLogin = () => {
                 marginBottom: 1,
                 "& .MuiOutlinedInput-root": {
                   "& fieldset": {
-                    borderColor: password === "" ? "red" : "rgba(0, 86, 179, 1)",
+                    borderColor: perror ? "red" : "rgba(0, 86, 179, 1)",
                   },
                 },
               }}
             />
-            <p className="text-red-600 px-12">{loginerror}</p>
+            {loginerror && <p className="text-red-600 px-12">{loginerror}</p>}
             <Button
               type="submit"
               fullWidth
