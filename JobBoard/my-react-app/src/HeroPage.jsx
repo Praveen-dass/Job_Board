@@ -8,7 +8,7 @@ export default function HeroPage() {
   const navigater = useNavigate();
   useEffect(() => {
     AOS.init({
-      duration: 3000,
+      duration: 1000,
     });
   }, []);
 

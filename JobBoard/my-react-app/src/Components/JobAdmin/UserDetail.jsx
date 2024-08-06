@@ -1,8 +1,9 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Pagination from "@mui/material/Pagination";
 import SideNavInDashboard from "./SideNavInDashboard";
 import Navbar from "./Navbar";
+import { Admincontext } from "../../App";
 import {
   Box,
   Table,
@@ -17,6 +18,7 @@ import {
 } from "@mui/material";
 
 export default function UserDetail() {
+  const { companyname } = useContext(Admincontext);
   const [users, setUsers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const usersPerPage = 7;
@@ -25,7 +27,7 @@ export default function UserDetail() {
     const fetch = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8080/details/get/user"
+          `http://localhost:8080/details/get/user/${companyname}`
         );
         console.log(response.data);
         setUsers(response.data);
@@ -47,7 +49,7 @@ export default function UserDetail() {
   const handleDownload = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/files/download/1`,
+        "http://localhost:8080/files/download/8",
         {
           responseType: "blob",
         }
@@ -74,7 +76,7 @@ export default function UserDetail() {
         <Box className="h-[100vh] w-[60%]  container mx-auto ">
           <TableContainer component={Paper} className="mt-[1%]">
             <Table>
-              <TableHead className="bg-blue-50 border-4 shadow-lg shadow-blue-500/100">
+              <TableHead className="bg-white border-4 shadow-lg shadow-blue-500/100">
                 <TableRow>
                   <TableCell padding="checkbox">
                     <Checkbox />
@@ -87,7 +89,7 @@ export default function UserDetail() {
                   <TableCell>Resume</TableCell>
                 </TableRow>
               </TableHead>
-              <TableBody className="divide-y bg-blue-100 shadow-2xl shadow-blue-500/100">
+              <TableBody className="divide-y bg-gray-300 shadow-2xl shadow-blue-500/100">
                 {currentUsers.map((user) => (
                   <TableRow key={user.id}>
                     <TableCell padding="checkbox">

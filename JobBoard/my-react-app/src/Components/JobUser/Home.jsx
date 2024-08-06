@@ -17,7 +17,6 @@ import UserNavBar from "./userNavbar";
 import { useNavigate } from "react-router-dom";
 import gif3 from "./images/giphy.gif";
 
-
 export default function CompanyDetail() {
   const { jobName, location } = useContext(Admincontext);
   const [jobs, setJobs] = useState([]);
@@ -65,7 +64,7 @@ export default function CompanyDetail() {
     <>
       <UserNavBar />
       <JobSearchForm />
-      
+
       <div className="container mx-auto">
         <div className="mx-28 ">
           <div className="grid grid-cols-2  gap-4  p-2">
@@ -82,7 +81,7 @@ export default function CompanyDetail() {
                     <p className="text-lg font-light">{job.location}</p>
                     <div className="flex flex-row my-5">
                       <p className="mr-1 bg-gray-300 rounded-md px-3 ">
-                      ₹{job.salary}
+                        ₹{job.salary}
                       </p>
                       <p className="mx-1 bg-gray-300 rounded-md px-3">
                         {job.jobType}
@@ -92,8 +91,10 @@ export default function CompanyDetail() {
                       </p>
                     </div>
                     <div className="flex flex-row mb-3">
-                      <FastForward size={20} className="mt-[2px]"  />
-                      <p className="ml-2  underline decoration-inherit">Easily Access</p>
+                      <FastForward size={20} className="mt-[2px]" />
+                      <p className="ml-2  underline decoration-inherit">
+                        Easily Access
+                      </p>
                     </div>
                     <p className="font-bold">{job.description}..</p>
                     <div className="flex flex-row mt-7">
@@ -126,7 +127,9 @@ export default function CompanyDetail() {
                       <button
                         className="bg-blue-500 text-white  mx-2  rounded-md py-2 px-4  hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                         onClick={() => {
-                          navigater("/user/applyjob");
+                          navigater(
+                            `/user/applyjob/${selectedJob.companyName}`
+                          );
                         }}
                       >
                         Apply Now
@@ -147,7 +150,11 @@ export default function CompanyDetail() {
                   <div className="px-8">
                     <div className="m-4">
                       <div className="flex flex-row ">
-                        <PiggyBank size={20} strokeWidth={1.75} className="mt-1"/>
+                        <PiggyBank
+                          size={20}
+                          strokeWidth={1.75}
+                          className="mt-1"
+                        />
                         <p className=" mx-2 font-semibold text-xl">Pay</p>
                       </div>
                       <p className="text-1xl ml-9">₹{selectedJob.salary}</p>
@@ -155,7 +162,11 @@ export default function CompanyDetail() {
                     <div className="m-4">
                       <div className="flex flex-row">
                         <div>
-                          <ContactRound size={20} strokeWidth={1.75} className="mt-1 mr-2" />
+                          <ContactRound
+                            size={20}
+                            strokeWidth={1.75}
+                            className="mt-1 mr-2"
+                          />
                         </div>
                         <p className="font-semibold text-xl ml-1">Job Type</p>
                       </div>
@@ -188,11 +199,11 @@ export default function CompanyDetail() {
                   </div>
                 </div>
               ) : (
-                <>  
-                <p className="text-center text-3xl font-bold mt-10">
-                  SELECT A JOB
-                </p>
-                <img src={gif3} className="h-60 w-60 ml-40"/>
+                <>
+                  <p className="text-center text-3xl font-bold mt-10">
+                    SELECT A JOB
+                  </p>
+                  <img src={gif3} className="h-60 w-60 ml-40" />
                 </>
               )}
             </div>

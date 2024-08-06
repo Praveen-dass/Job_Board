@@ -4,18 +4,18 @@ import { Admincontext } from "../../App";
 
 const UserNavBar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const {username,setUserNameContext} = useContext(Admincontext);
+  const { username, setUserNameContext } = useContext(Admincontext);
   const navigator = useNavigate();
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
 
-  useEffect(()=>{
-    if(username == ""){
+  useEffect(() => {
+    if (username == "") {
       setUserNameContext(localStorage.getItem("username"));
     }
-  },[])
+  }, []);
 
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
@@ -48,12 +48,12 @@ const UserNavBar = () => {
               </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                to="/mainpage"
                 className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               >
-                Pricing
-              </a>
+                About Us
+              </Link>
             </li>
             <li>
               <a
@@ -91,9 +91,12 @@ const UserNavBar = () => {
               />
             </svg>
           </button>
-          <button class="relative inline-flex items-center justify-center p-0.5 mr-5  me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800" onClick={() => navigator("/user/profile")}>
+          <button
+            class="relative inline-flex items-center justify-center p-0.5 mr-5  me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800"
+            onClick={() => navigator("/user/profile")}
+          >
             <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-            Profile
+              Profile
             </span>
           </button>
           <div
@@ -165,7 +168,7 @@ const UserNavBar = () => {
                 <Link
                   to="/"
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                  onClick={() => localStorage.setItem('username',"")}
+                  onClick={() => localStorage.setItem("username", "")}
                 >
                   Sign out
                 </Link>

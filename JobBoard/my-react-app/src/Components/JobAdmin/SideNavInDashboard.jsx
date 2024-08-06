@@ -11,11 +11,11 @@ export default function SideNavInDashboard() {
       <div className="h-full">
         <div className=" p-3 space-y-2 w-60 bg-gray-50 text-gray-800 h-[100vh]">
           <div className="flex items-center p-2 space-x-4">
-            {/* <img
+            <img
               src="https://source.unsplash.com/100x100/?portrait"
               alt=""
               className="w-12 h-12 rounded-full bg-gray-500"
-            /> */}
+            />
             <div>
               <h2 className="text-lg font-semibold">{username}</h2>
               <span className="flex items-center space-x-1">

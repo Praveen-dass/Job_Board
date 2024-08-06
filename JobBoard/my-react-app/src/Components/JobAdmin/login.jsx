@@ -12,6 +12,7 @@ import LockIcon from "@mui/icons-material/Lock";
 import { LockOutlined } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import bg from "../../assets/login.jpg";
 import { Admincontext } from "../../App";
 
 const AdminLogin = () => {
@@ -20,7 +21,8 @@ const AdminLogin = () => {
   const [uerror, setuerror] = useState(false);
   const [perror, setperror] = useState(false);
   const [loginerror, setLoginError] = useState(null);
-  const { setUserNameContext, setCompanyNameInContext } = useContext(Admincontext);
+  const { setUserNameContext, setCompanyNameInContext } =
+    useContext(Admincontext);
   const navigator = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -160,7 +162,8 @@ const styles = {
     alignItems: "center",
     width: "100%",
     height: "100vh",
-    backgroundImage: 'url("https://wallpaperaccess.com/full/2416118.jpg")',
+    backgroundImage:
+      'url("https://img.freepik.com/free-vector/gradient-abstract-background_23-2149131346.jpg?w=996&t=st=1722920645~exp=1722921245~hmac=9838a1571618634e2bca74a2b66ecf8c6c8d25056546db6ae02daae807efef7e")',
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     backgroundPosition: "center",

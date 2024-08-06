@@ -50,7 +50,11 @@ function App() {
         <Route path="/postjob" element={<JobPostPage />} />
         <Route path="/getjob" element={<CompanyDetail />} />
         <Route path="/post/form" element={<PostJobForm />} />
-        <Route path="/user/applyjob" element={<ApplyNow />} />
+        <Route
+          path="/user/applyjob/:companyname"
+          Component={ApplyNow}
+          element={<ApplyNow />}
+        />
         <Route path="/post/dashboard" element={<DashBoard />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/get/review" element={<Companies />} />
@@ -58,7 +62,11 @@ function App() {
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/user/signup" element={<UserSignup />} />
         <Route path="/user/login" element={<UserLogin />} />
-        <Route path="/job/update/:id" Component={UpdateForm} element={<UpdateForm />} />
+        <Route
+          path="/job/update/:id"
+          Component={UpdateForm}
+          element={<UpdateForm />}
+        />
         <Route path="/mainpage" element={<FrontPage />} />
         <Route path="/userdetails" element={<UserDetail />} />
         <Route path="/check" element={<SkillTestForm />} />
