@@ -53,7 +53,7 @@ export default function UserDetail() {
   const deleteUser = async (id) => {
     try {
       const del = await axios.delete(
-        `http:localhost:8080/details/delete/${id}`
+        `http://localhost:8080/details/delete/${id}`
       );
       setUsers(users.filter((user) => user.id !== id));
     } catch (e) {
