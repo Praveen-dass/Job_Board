@@ -15,7 +15,7 @@ export default function HeroPage() {
   return (
     <div className="container mx-auto">
       <Header />
-      <div className="flex mt-24 h-[58vh]">
+      <div className="flex mt-20 h-[58vh]">
         <div className="w-[50%]">
           <div className=" my-10  w-[80%] mx-auto space-y-2  pb-12 ">
             <h1 className="text-left text-5xl font-semiboldbold  ">

@@ -310,19 +310,6 @@ const ApplyNow = () => {
               }}
               handleChange={handleChange}
             />
-            {/* <fieldset className="w-full space-y-1 dark:text-gray-800">
-              <label htmlFor="files" className="block text-sm font-medium">
-                Upload Resume
-              </label>
-              <div className="flex">
-                <input
-                  type="file"
-                  name="files"
-                  id="files"
-                  className="px-2 py-2 m-4 rounded-md dark:border-gray-300 dark:text-gray-600 dark:bg-gray-100"
-                />
-              </div>
-            </fieldset> */}
             <div className="py-4">
               <h2>Upload PDF</h2>
               <input type="file" onChange={handleFileChange} />

@@ -45,6 +45,21 @@ export default function UserDetail() {
   const offset = (currentPage - 1) * usersPerPage;
   const currentUsers = users.slice(offset, offset + usersPerPage);
   const pageCount = Math.ceil(users.length / usersPerPage);
+  // const sendMail = async () => {
+  //   try {
+  //     await axios.post();
+  //   } catch (e) {}
+  // };
+  const deleteUser = async (id) => {
+    try {
+      const del = await axios.delete(
+        `http:localhost:8080/details/delete/${id}`
+      );
+      setUsers(users.filter((user) => user.id !== id));
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   const handleDownload = async () => {
     try {
@@ -87,6 +102,8 @@ export default function UserDetail() {
                   <TableCell>Age</TableCell>
                   <TableCell>Experience</TableCell>
                   <TableCell>Resume</TableCell>
+                  <TableCell>Accept</TableCell>
+                  <TableCell>Reject</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody className="divide-y bg-gray-300 shadow-2xl shadow-blue-500/100">
@@ -106,6 +123,19 @@ export default function UserDetail() {
                         onClick={handleDownload}
                       >
                         Download
+                      </button>
+                    </TableCell>
+                    <TableCell>
+                      <button className="bg-green-400 p-2 rounded-lg">
+                        Email
+                      </button>
+                    </TableCell>
+                    <TableCell>
+                      <button
+                        className="bg-red-400 p-2 rounded-lg"
+                        onClick={() => deleteUser(user.id)}
+                      >
+                        Reject
                       </button>
                     </TableCell>
                   </TableRow>
