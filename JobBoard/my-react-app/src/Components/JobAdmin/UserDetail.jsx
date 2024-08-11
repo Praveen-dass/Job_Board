@@ -45,11 +45,27 @@ export default function UserDetail() {
   const offset = (currentPage - 1) * usersPerPage;
   const currentUsers = users.slice(offset, offset + usersPerPage);
   const pageCount = Math.ceil(users.length / usersPerPage);
-  // const sendMail = async () => {
-  //   try {
-  //     await axios.post();
-  //   } catch (e) {}
-  // };
+
+  const sendMail = async (email) => {
+    const emailDetails = {
+      to: email,
+      subject: "Welcome Sir, Intern at Jobizz",
+      message: `Hi Naveen,\n\nPlease check out this link: https://www.example.com\n\nBest regards,\nJobizz community`,
+    };
+
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/send-email",
+        emailDetails
+      );
+      console.log(response.data);
+      alert("sended successfully");
+    } catch (e) {
+      console.error("Error sending email:", e);
+      alert("not sended");
+    }
+  };
+
   const deleteUser = async (id) => {
     try {
       const del = await axios.delete(
@@ -126,7 +142,10 @@ export default function UserDetail() {
                       </button>
                     </TableCell>
                     <TableCell>
-                      <button className="bg-green-400 p-2 rounded-lg">
+                      <button
+                        className="bg-green-400 p-2 rounded-lg"
+                        onClick={() => sendMail(user.email)}
+                      >
                         Email
                       </button>
                     </TableCell>

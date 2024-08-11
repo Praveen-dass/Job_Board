@@ -23,6 +23,7 @@ import LoginPage from "./Components/LoginPage.jsx";
 import SignUpPage from "./Components/SignUpPage.jsx";
 import { Profile } from "./Components/JobUser/Profile";
 import UserDetail from "./Components/JobAdmin/UserDetail.jsx";
+import UpdateProfile from "./Components/JobAdmin/UpdateProfile.jsx";
 
 export const Admincontext = createContext();
 function App() {
@@ -50,6 +51,7 @@ function App() {
         <Route path="/postjob" element={<JobPostPage />} />
         <Route path="/getjob" element={<CompanyDetail />} />
         <Route path="/post/form" element={<PostJobForm />} />
+        <Route path="/update/form" element={<UpdateProfile />} />
         <Route
           path="/user/applyjob/:companyname"
           Component={ApplyNow}
