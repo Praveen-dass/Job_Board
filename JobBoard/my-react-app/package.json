@@ -14,6 +14,8 @@
     "@emotion/styled": "^11.13.0",
     "@mui/icons-material": "^5.16.5",
     "@mui/material": "^5.16.5",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
     "aos": "^3.0.0-beta.6",
     "axios": "^1.7.2",
     "lucide-react": "^0.417.0",
@@ -21,11 +23,10 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hot-toast": "^2.4.1",
-    "react-router-dom": "^6.25.1"
+    "react-router-dom": "^6.25.1",
+    "typescript": "^5.5.4"
   },
   "devDependencies": {
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.19",
     "eslint": "^8.57.0",

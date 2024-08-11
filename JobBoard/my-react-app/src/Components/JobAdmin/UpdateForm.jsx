@@ -6,7 +6,7 @@ import Navbar from "./Navbar";
 import Footer from "../Footer";
 import { useNavigate, useParams } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
-import AdminLogin from "./login";
+import { AdminLogin } from "./login";
 import { Admincontext } from "../../App";
 
 const UpdateForm = () => {
