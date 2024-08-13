@@ -22,7 +22,7 @@ export default function Cart() {
       }
     };
     fetch();
-  }, []);
+  }, [companyname]);
   const handleSubmit = async (id) => {
     try {
       const response = await axios.delete(
@@ -37,9 +37,7 @@ export default function Cart() {
   };
   return (
     <div className="boreder border-black ">
-      {/* <Navbar></Navbar> */}
-      <div className="container mx-auto f">
-        {/* <SideNavInDashboard /> */}
+      <div className="container mx-auto ">
         <div className=" w-[90%] flex justify-center mx-32">
           <div className="grid grid-cols-3 gap-3 w-full py-10  px-10 ">
             {jobs.map((job) => (

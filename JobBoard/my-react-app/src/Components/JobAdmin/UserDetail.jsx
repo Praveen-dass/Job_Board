@@ -109,9 +109,9 @@ export default function UserDetail() {
             <Table>
               <TableHead className="bg-white border-4 shadow-lg shadow-blue-500/100">
                 <TableRow>
-                  <TableCell padding="checkbox">
+                  {/* <TableCell padding="checkbox">
                     <Checkbox />
-                  </TableCell>
+                  </TableCell> */}
                   <TableCell>UserName</TableCell>
                   <TableCell>Email</TableCell>
                   <TableCell>Gender</TableCell>
@@ -125,9 +125,9 @@ export default function UserDetail() {
               <TableBody className="divide-y bg-gray-300 shadow-2xl shadow-blue-500/100">
                 {currentUsers.map((user) => (
                   <TableRow key={user.id}>
-                    <TableCell padding="checkbox">
+                    {/* <TableCell padding="checkbox">
                       <Checkbox />
-                    </TableCell>
+                    </TableCell> */}
                     <TableCell>{user.username}</TableCell>
                     <TableCell>{user.email}</TableCell>
                     <TableCell>{user.gender}</TableCell>
