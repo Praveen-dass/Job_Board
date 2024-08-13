@@ -23,6 +23,7 @@ import { Profile } from "./Components/JobUser/Profile";
 import UserDetail from "./Components/JobAdmin/UserDetail.jsx";
 import { UserLogin } from "./Components/JobUser/Userlogin.jsx";
 import UpdateProfile from "./Components/JobAdmin/UpdateProfile.jsx";
+import { SuggesionPage } from "./Components/JobUser/SuggesionPage.jsx";
 
 export const Admincontext = createContext();
 function App() {
@@ -30,6 +31,7 @@ function App() {
   const [location, setLocation] = useState("");
   const [companyname, setCompanyNameInContext] = useState("");
   const [username, setUserNameContext] = useState("");
+  const [suggesion,setSuggesion] = useState([]);
 
   return (
     <Admincontext.Provider
@@ -42,6 +44,8 @@ function App() {
         setCompanyNameInContext,
         username,
         setUserNameContext,
+        suggesion,
+        setSuggesion
       }}
     >
       <Routes>
@@ -74,6 +78,7 @@ function App() {
         <Route path="/loginpage" element={<LoginPage />} />
         <Route path="/signUpPage" element={<SignUpPage />} />
         <Route path="/user/Profile" element={<Profile />} />
+        <Route path="/skill/suggesion" element={<SuggesionPage />}/>
       </Routes>
     </Admincontext.Provider>
   );

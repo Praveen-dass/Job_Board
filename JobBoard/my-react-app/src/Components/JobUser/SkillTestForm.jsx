@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 
 import jobpic from "../../assets/skill.jpg";
 import UserNavBar from "./userNavbar";
 import { useNavigate } from "react-router-dom";
+import { Admincontext } from "../../App";
 const SkillTestForm = () => {
   const navigator = useNavigate();
   const [step, setStep] = useState(1);
   const [sectors, setSectors] = useState([]);
   const [options, setOptions] = useState([]);
+  const {setSuggesion} = useContext(Admincontext);
   const [formData, setFormData] = useState({
     preferredSector: "",
     selectedSkills: [],
@@ -106,8 +108,9 @@ const SkillTestForm = () => {
       .post("http://localhost:8080/api/formData", payload)
       .then((response) => {
         toast.success("Data submitted successfully");
-        navigator("/user/Profile")
+        setSuggesion(response.data)
         console.log(response.data);
+        navigator("/skill/suggesion")
       })
       .catch((error) => {
         console.error("There was an error submitting the form!", error);
