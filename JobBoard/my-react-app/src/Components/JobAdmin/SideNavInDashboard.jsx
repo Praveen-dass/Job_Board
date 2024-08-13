@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Admincontext } from "../../App";
-import { User, Building2, Plus } from "lucide-react";
+import { User, Building2, Plus, UserPen } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 export default function SideNavInDashboard() {
   const navigator = useNavigate();
@@ -29,6 +29,7 @@ export default function SideNavInDashboard() {
               </span>
             </div>
           </div>
+
           <div className="divide-y divide-gray-300">
             <ul className="pt-2 pb-4 space-y-1 text-sm">
               <li className="bg-gray-100 text-gray-900">
@@ -56,6 +57,15 @@ export default function SideNavInDashboard() {
                 >
                   <Plus size={20} />
                   <span>Add Jobs</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/update/form"
+                  className="flex items-center p-2 space-x-3 rounded-md"
+                >
+                  <UserPen size={20} />
+                  <span>Update</span>
                 </Link>
               </li>
             </ul>

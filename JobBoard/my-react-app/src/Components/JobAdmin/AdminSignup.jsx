@@ -14,6 +14,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import { Admincontext } from "../../App";
+import signupbg from "../../assets/signup.svg";
+
 
 const defaultTheme = createTheme();
 
@@ -91,17 +93,27 @@ export default function AdminSignup() {
         <CssBaseline />
         <Grid
           item
-          xs={false}
+          xs={12}
           sm={4}
           md={6}
           sx={{
-            backgroundImage:
-              "url(https://img.freepik.com/free-photo/job-hiring-vacancy-team-interview-career-recruiting_53876-121268.jpg)", // Replace with your background image URL
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: 2,
           }}
-        />
+        >
+          <img
+            src={signupbg}
+            alt="Sign up visual"
+            style={{
+              width: "100%",
+              height: "auto",
+              maxWidth: "80%", // Adjust this as needed
+              alignSelf: "center",
+            }}
+          />
+        </Grid>
         <Grid
           item
           xs={12}
